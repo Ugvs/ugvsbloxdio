@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Download UgvsAI</title>
+</head>
+<body>
+<h2>Download UgvsAI HTML</h2>
+<button id="downloadBtn">Download UgvsAI.html</button>
+
+<script>
+document.getElementById('downloadBtn').addEventListener('click', function() {
+    const content = `<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UgvsAI</title>
+<style>
+html, body {margin:0;height:100%;background:black;color:white;font-family:Arial;}
+</style>
+</head>
+<body>
+<h1>UgvsAI Browser</h1>
+<p>Red-black AI background & Chat here.</p>
+</body>
+</html>`;
+    
+    const blob = new Blob([content], { type: 'text/html' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'UgvsAI.html';
+    a.click();
+    URL.revokeObjectURL(url);
+});
+</script>
+</body>
+</html>
