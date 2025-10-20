@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UgvsAI</title>
+<style>
+  html, body {
+    margin: 0;
+    height: 100%;
+    font-family: Arial, sans-serif;
+    background: url('https://media.giphy.com/media/3o7aD2saalBwwftBIY/giphy.gif') no-repeat center center fixed;
+    background-size: cover;
+    color: #fff;
+    overflow: hidden;
+  }
+
+  .chat-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    max-width: 600px;
+    background: rgba(0,0,0,0.75);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    height: 80%;
+  }
+
+  .chat-header {
+    padding: 15px;
+    background: linear-gradient(90deg, #ff0000, #000000);
+    font-weight: bold;
+    font-size: 1.2em;
+    text-align: center;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+  }
+
+  .chat-messages {
+    flex: 1;
+    padding: 15px;
+    overflow-y: auto;
+  }
+
+  .chat-input {
+    display: flex;
+    border-top: 1px solid #444;
+  }
+
+  .chat-input input {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    outline: none;
+    font-size: 1em;
+  }
+
+  .chat-input button {
+    padding: 10px 20px;
+    border: none;
+    background: #ff0000;
+    color: #fff;
+    cursor: pointer;
+    font-weight: bold;
+  }
+
+  .message {
+    margin-bottom: 10px;
+  }
+
+  .user {
+    color: #00ffdd;
+  }
+
+  .ai {
+    color: #ff4444;
+  }
+</style>
+</head>
+<body>
+<div class="chat-container">
+  <div class="chat-header">UgvsAI</div>
+  <div class="chat-messages" id="chatMessages"></div>
+  <div class="chat-input">
+    <input type="text" id="userInput" placeholder="Type a message..." />
+    <button onclick="sendMessage()">Send</button>
+  </div>
+</div>
+
+<script>
+const chatMessages = document.getElementById('chatMessages');
+const userInput = document.getElementById('userInput');
+
+function appendMessage(sender, text) {
+  const msg = document.createElement('div');
+  msg.classList.add('message');
+  msg.classList.add(sender);
+  msg.textContent = (sender === 'user' ? 'You: ' : 'UgvsAI: ') + text;
+  chatMessages.appendChild(msg);
+  chatMessages.scrollTop = chatMessages.scrollHeight;
+}
+
+function sendMessage() {
+  const text = userInput.value.trim();
+  if (!text) return;
+  appendMessage('user', text);
+  userInput.value = '';
+  
+  // Simple AI response simulation
+  setTimeout(() => {
+    appendMessage('ai', 'This is a UgvsAI response to: "' + text + '"');
+  }, 500);
+}
+
+userInput.addEventListener('keydown', function(e) {
+  if (e.key === 'Enter') sendMessage();
+});
+</script>
+</body>
+</html>
